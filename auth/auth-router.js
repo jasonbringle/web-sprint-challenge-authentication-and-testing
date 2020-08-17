@@ -3,6 +3,9 @@ const Db = require('../jokes/jokes-model.js')
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 
+const secrets = require('../config/secrets.js')
+
+
 router.post("/register",(req,res) => {
   const creds = req.body
   const hash = bcrypt.hashSync(creds.password, 14)
@@ -23,8 +26,8 @@ router.post('/login', (req,res) => {
       .then(user => {
           if(user && bcrypt.hashSync(body.password, user.password)){
               const token = generateToken(user)
-              req.session.user = user;
-              res.status(200).json({ message: `${user.name} is logged in!`,
+              // req.session.user = user;
+              res.status(200).json({ message: `${user.username} is logged in!`,
                   token
               })
           } else {
