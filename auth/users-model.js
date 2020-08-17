@@ -3,6 +3,7 @@ const db = require('../database/dbConfig.js');
 module.exports = {
     register,
     findUser,
+    remove
 }
 
 
@@ -22,5 +23,9 @@ function findUser(user){
             return found[0]})
 }
 
+function remove(id){
+    console.log("DELETE AT MODEL",id)
+    return db('users').where("id", id).del()
+}
 
 
