@@ -24,7 +24,6 @@ function findUser(user){
 }
 
 function remove(id){
-    console.log("DELETE AT MODEL",id)
     return db('users').where("id", id).del()
 }
 
